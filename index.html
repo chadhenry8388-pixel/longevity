@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>싱클레어의 젊음 유지 공식 — 노화의 종말 요약</title>
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --surface2:#f3f2ee;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --border:rgba(11,11,11,.10);
+  --life:#2a78d6; --food:#1baf7a; --supp:#eb6834;
+  --go:#0ca30c; --go-ink:#067006; --mid:#fab219; --no:#d03b3b;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --surface2:#232320;
+    --ink:#fff; --ink2:#c3c2b7; --muted:#8f8d86;
+    --grid:#2c2c2a; --border:rgba(255,255,255,.11);
+    --life:#4a94ee; --food:#22c98c; --supp:#ff7a43;
+    --go:#2bc42b; --go-ink:#3ad13a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --surface2:#232320;
+  --ink:#fff; --ink2:#c3c2b7; --muted:#8f8d86;
+  --grid:#2c2c2a; --border:rgba(255,255,255,.11);
+  --life:#4a94ee; --food:#22c98c; --supp:#ff7a43;
+  --go:#2bc42b; --go-ink:#3ad13a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--page); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  line-height:1.65; font-size:16px;
+  padding:0 0 calc(80px + env(safe-area-inset-bottom,0));
+  overflow-wrap:break-word; word-break:keep-all;
+  -webkit-tap-highlight-color:transparent;
+}
+button,a,summary,label{touch-action:manipulation}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.wrap{max-width:580px;margin:0 auto;padding:0 16px}
+section{margin-top:clamp(32px,8vw,42px);scroll-margin-top:calc(var(--navh,56px) + 12px)}
+h1,h2,h3{line-height:1.35;letter-spacing:-.02em}
+h2{font-size:clamp(19px,5.3vw,22px);margin-bottom:6px}
+h3{font-size:clamp(16px,4.4vw,17px);margin-bottom:8px}
+p{color:var(--ink2)}
+strong{color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.lede{color:var(--ink2);font-size:clamp(14px,4vw,15px);margin-top:8px}
+.small{font-size:13px;color:var(--muted)}
+
+/* 네비 */
+.topnav{position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--page) 86%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top,0)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+  max-width:580px;margin:0 auto;padding:9px 16px;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--ink2);text-decoration:none;
+  padding:9px 13px;border-radius:20px;border:1px solid var(--border);
+  background:var(--surface);white-space:nowrap;transition:.15s}
+.chips a.on{background:var(--ink);color:var(--page);border-color:var(--ink)}
+.chips a:active{transform:scale(.96)}
+
+header{padding:26px 0 6px;text-align:center}
+header h1{font-size:clamp(23px,6.8vw,28px);margin-top:10px}
+header .sub{color:var(--ink2);font-size:clamp(14px,4vw,15px);margin-top:12px}
+.quote{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--life);
+  border-radius:0 12px 12px 0;padding:16px 17px;margin-top:20px;text-align:left}
+.quote p{font-size:clamp(15px,4.3vw,16.5px);color:var(--ink);font-weight:650;line-height:1.55}
+.quote .by{font-size:12.5px;color:var(--muted);margin-top:8px;font-weight:400}
+
+.hl{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--life);
+  border-radius:0 12px 12px 0;padding:15px 16px;margin-top:14px;font-size:clamp(14px,4vw,15px)}
+.hl.warn{border-left-color:var(--no)}
+.hl.ok{border-left-color:var(--go)}
+.hl b{color:var(--ink)}
+
+/* 원인 칩 */
+.causes{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.causes span{font-size:13.5px;font-weight:650;padding:8px 12px;border-radius:20px;
+  background:color-mix(in srgb,var(--no) 12%,transparent);color:var(--no);
+  border:1px solid color-mix(in srgb,var(--no) 25%,transparent)}
+
+/* NAD 게이지 */
+.gauge{margin-top:14px}
+.grow{margin-bottom:14px}
+.gtop{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
+.gtop b{font-weight:750}
+.gtrack{height:30px;background:var(--grid);border-radius:6px;overflow:hidden}
+.gfill{height:100%;border-radius:0 6px 6px 0;display:flex;align-items:center;justify-content:flex-end;
+  padding-right:10px;font-size:12px;font-weight:750;color:#fff;white-space:nowrap}
+
+/* 체크리스트 */
+.score{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);
+  padding:20px;text-align:center;position:sticky;top:calc(var(--navh,56px) + 6px);z-index:20;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.score .n{font-size:clamp(34px,10vw,42px);font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.score .n small{font-size:18px;color:var(--muted);font-weight:650}
+.score .msg{font-size:clamp(14px,4vw,15px);margin-top:6px;font-weight:650;line-height:1.5}
+.sbar{height:8px;background:var(--grid);border-radius:4px;overflow:hidden;margin-top:12px}
+.sbar span{display:block;height:100%;width:0;background:var(--go);border-radius:4px;transition:width .35s}
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.legend div{font-size:11.5px;font-weight:700;padding:7px 3px;border-radius:9px;
+  border:1px solid var(--border);background:var(--page);line-height:1.3}
+.legend b{display:block;font-size:14px;margin-top:2px}
+
+.clist{margin-top:14px}
+.cgroup{margin-bottom:14px}
+.ctitle{font-size:13px;font-weight:750;letter-spacing:.03em;padding:0 2px 7px;display:flex;
+  justify-content:space-between;align-items:baseline}
+.citem{display:flex;gap:12px;align-items:flex-start;width:100%;cursor:pointer;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:14px 15px;margin-bottom:8px;min-height:56px;transition:.15s;text-align:left}
+.citem:active{transform:scale(.99)}
+.citem input{position:absolute;opacity:0;width:0;height:0}
+.box{flex:0 0 22px;height:22px;border-radius:7px;border:2px solid var(--grid);margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;
+  font-weight:800;transition:.15s}
+.citem.on{border-color:var(--go);background:color-mix(in srgb,var(--go) 7%,var(--surface))}
+.citem.on .box{background:var(--go);border-color:var(--go);color:#fff}
+.ctext{font-size:clamp(14px,4vw,14.8px);font-weight:650;line-height:1.5;min-width:0}
+.ctext em{display:block;font-style:normal;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px}
+
+/* 실천 카드 */
+.steps{margin-top:14px}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:16px 17px;margin-bottom:10px;border-left:3px solid var(--life)}
+.scard.food{border-left-color:var(--food)}
+.scard.supp{border-left-color:var(--supp)}
+.scard .n{font-size:12px;font-weight:800;letter-spacing:.05em;color:var(--life)}
+.scard.food .n{color:var(--food)}
+.scard.supp .n{color:var(--supp)}
+.scard h4{font-size:clamp(15.5px,4.4vw,16.5px);margin:4px 0 9px;line-height:1.4}
+.scard p{font-size:clamp(13.8px,3.9vw,14.5px);line-height:1.65}
+.yn{margin-top:10px;display:grid;gap:6px}
+.yn div{font-size:13.5px;padding:9px 12px;border-radius:9px;line-height:1.45}
+.yn .y{background:color-mix(in srgb,var(--go) 11%,transparent);color:var(--go-ink)}
+.yn .n2{background:color-mix(in srgb,var(--no) 10%,transparent);color:var(--no)}
+.pt{margin-top:10px;font-size:13.5px;color:var(--ink2);background:var(--surface2);
+  padding:11px 13px;border-radius:9px;line-height:1.55}
+.pt b{color:var(--ink)}
+
+/* 순서 */
+.order{display:grid;gap:8px;margin-top:14px}
+.ostep{display:flex;gap:13px;align-items:center;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;padding:15px 16px}
+.obadge{flex:0 0 38px;height:38px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:17px;font-weight:800;color:#fff}
+.ostep .t{font-size:15px;font-weight:750}
+.ostep .d{font-size:13px;color:var(--muted);margin-top:2px;line-height:1.45}
+
+ul.plain{list-style:none;margin-top:10px}
+ul.plain li{padding:10px 0;border-bottom:1px solid var(--grid);font-size:14.5px;color:var(--ink2);line-height:1.55}
+ul.plain li:last-child{border-bottom:0}
+ul.plain li b{color:var(--ink)}
+
+.totop{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0));z-index:45;
+  width:48px;height:48px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--border);background:var(--surface);color:var(--ink);
+  font-size:19px;line-height:1;font-family:inherit;box-shadow:0 5px 18px rgba(0,0,0,.16);
+  opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .22s,transform .22s}
+.totop.on{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--grid);
+  font-size:12px;color:var(--muted);line-height:1.75}
+
+@media (max-width:360px){
+  .wrap{padding:0 13px}
+  .card,.score{padding:15px}
+  .chips a{font-size:12.5px;padding:8px 11px}
+  .legend div{font-size:11px}
+}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <div class="chips" id="chips">
+    <a href="#s-core">🔐 핵심 원리</a>
+    <a href="#s-check">✅ 자가 점검</a>
+    <a href="#s-life">🧠 생활습관</a>
+    <a href="#s-food">🍽️ 식습관</a>
+    <a href="#s-supp">💊 영양제</a>
+    <a href="#s-order">🧭 순서</a>
+  </div>
+</nav>
+<button class="totop" id="totop" aria-label="맨 위로">↑</button>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Drug Hacker Medical · Longevity</div>
+  <h1>싱클레어의<br>젊음 유지 공식</h1>
+  <p class="sub">하버드 의대 유전학자가 말하는<br><strong>노화를 늦추는 12가지</strong></p>
+  <div class="quote">
+    <p>"노화는 피할 수 없는 현상이 아니라,<br>잘못된 생활 신호가 만든 결과다."</p>
+    <div class="by">— 데이비드 싱클레어, 하버드 의대 유전학</div>
+  </div>
+</header>
+
+<!-- 핵심 원리 -->
+<section id="s-core">
+  <h2>🔐 핵심 원리 한 장</h2>
+  <p class="lede">이 책 전체가 사실 <strong>한 문장</strong>으로 요약됩니다.</p>
+
+  <div class="card" style="margin-top:14px">
+    <div class="small" style="font-weight:750;color:var(--ink)">노화의 본질</div>
+    <p style="font-size:15.5px;margin-top:5px;color:var(--ink)"><strong>세포가 자신의 정체성을 잃어가는 과정</strong></p>
+
+    <div class="small" style="font-weight:750;color:var(--ink);margin-top:18px">노화를 앞당기는 것들</div>
+    <div class="causes">
+      <span>혈당 스파이크</span><span>과식</span><span>만성 염증</span><span>수면 부족</span><span>스트레스</span>
+    </div>
+
+    <div class="small" style="font-weight:750;color:var(--ink);margin-top:18px">해결 전략</div>
+    <p style="font-size:17px;margin-top:5px;color:var(--ink);font-weight:750">"몸을 살짝 불편하게 만들어라"</p>
+    <p style="font-size:14.5px;margin-top:6px">이 불편함이 바로 👉 <strong>장수 유전자(시르투인)를 깨우는 신호</strong>입니다.</p>
+  </div>
+
+  <h3 style="margin-top:26px">🔋 장수 유전자에도 연료가 필요합니다</h3>
+  <p class="lede">시르투인이 아무리 유능한 수리공이어도, <strong>NAD⁺</strong>라는 연료가 없으면 일을 못 합니다.</p>
+
+  <div class="card gauge">
+    <div class="grow">
+      <div class="gtop"><span><b>20대</b>의 NAD⁺</span><span style="color:var(--go-ink);font-weight:750">100%</span></div>
+      <div class="gtrack"><div class="gfill" style="width:100%;background:var(--go)">가득</div></div>
+    </div>
+    <div class="grow" style="margin-bottom:0">
+      <div class="gtop"><span><b>50대</b>의 NAD⁺</span><span style="color:var(--no);font-weight:750">약 절반</span></div>
+      <div class="gtrack"><div class="gfill" style="width:50%;background:var(--no)">절반</div></div>
+    </div>
+    <p class="small" style="margin-top:12px">📛 연료가 없으니 → ❌ 시르투인 수리공이 일을 멈춤 → 👉 <strong>노화가 급물살</strong></p>
+  </div>
+
+  <div class="hl">
+    <b>참고 — 이 수치는 '대략'입니다</b><br>
+    "50대엔 절반"은 자주 인용되지만 <b>조직마다·측정법마다 값이 꽤 다릅니다.</b> 피부·간·근육에서 결과가 제각각이고 사람 대상 표준 측정법도 아직 합의되지 않았습니다. <b>"나이 들며 NAD⁺ 대사가 변한다"는 방향은 맞다</b> 정도로 받아들이시면 됩니다.
+  </div>
+</section>
+
+<!-- 체크리스트 -->
+<section id="s-check">
+  <h2>✅ 나는 몇 개나 지키고 있을까</h2>
+  <p class="lede">12가지 중 해당하는 것을 눌러보세요. <strong>점수보다 어느 영역이 비었는지가 중요합니다.</strong></p>
+
+  <div class="score" id="score" style="margin-top:14px">
+    <div class="n"><span id="sc">0</span><small> / 12</small></div>
+    <div class="msg" id="smsg">하나씩 눌러보세요</div>
+    <div class="sbar"><span id="sfill"></span></div>
+    <div class="legend">
+      <div style="color:var(--life)">생활습관<b id="l1">0/4</b></div>
+      <div style="color:var(--food)">식습관<b id="l2">0/3</b></div>
+      <div style="color:var(--supp)">영양제<b id="l3">0/5</b></div>
+    </div>
+  </div>
+
+  <div class="clist" id="clist">
+    <div class="cgroup">
+      <div class="ctitle" style="color:var(--life)"><span>🧠 생활습관 4</span><span class="small">가장 먼저</span></div>
+      <label class="citem" data-g="0"><input type="checkbox"><span class="box">✓</span><span class="ctext">늘 배부르지 않게, 약간의 공복감을 유지한다<em>배부름이 기본값이면 노화 가속</em></span></label>
+      <label class="citem" data-g="0"><input type="checkbox"><span class="box">✓</span><span class="ctext">12~16시간 공복 시간을 지킨다<em>저녁 8시 → 다음날 아침 8시면 이미 12시간</em></span></label>
+      <label class="citem" data-g="0"><input type="checkbox"><span class="box">✓</span><span class="ctext">숨이 차고 근육이 자극되는 운동을 한다<em>산책만으로는 항노화 신호가 약함</em></span></label>
+      <label class="citem" data-g="0"><input type="checkbox"><span class="box">✓</span><span class="ctext">충분히 잔다<em>수면이 무너지면 어떤 영양제도 소용없음</em></span></label>
+    </div>
+    <div class="cgroup">
+      <div class="ctitle" style="color:var(--food)"><span>🍽️ 식습관 3</span><span class="small">그다음</span></div>
+      <label class="citem" data-g="1"><input type="checkbox"><span class="box">✓</span><span class="ctext">설탕·정제 탄수화물·액상과당 음료를 줄였다<em>혈당 스파이크는 정보 파괴자</em></span></label>
+      <label class="citem" data-g="1"><input type="checkbox"><span class="box">✓</span><span class="ctext">단백질+지방+섬유질 중심으로 먹는다<em>혈당이 천천히 오르는 식사</em></span></label>
+      <label class="citem" data-g="1"><input type="checkbox"><span class="box">✓</span><span class="ctext">간식을 줄여 먹는 횟수 자체를 정리했다<em>자주 먹을수록 성장 신호 ↑</em></span></label>
+    </div>
+    <div class="cgroup">
+      <div class="ctitle" style="color:var(--supp)"><span>💊 영양제 5</span><span class="small">마지막</span></div>
+      <label class="citem" data-g="2"><input type="checkbox"><span class="box">✓</span><span class="ctext">NMN / NAD⁺ 전구체</span></label>
+      <label class="citem" data-g="2"><input type="checkbox"><span class="box">✓</span><span class="ctext">레스베라트롤</span></label>
+      <label class="citem" data-g="2"><input type="checkbox"><span class="box">✓</span><span class="ctext">오메가3</span></label>
+      <label class="citem" data-g="2"><input type="checkbox"><span class="box">✓</span><span class="ctext">마그네슘</span></label>
+      <label class="citem" data-g="2"><input type="checkbox"><span class="box">✓</span><span class="ctext">항산화 네트워크 (글루타치온 등)</span></label>
+    </div>
+  </div>
+
+  <div class="hl" id="advice" style="display:none"></div>
+</section>
+
+<!-- 생활습관 -->
+<section id="s-life">
+  <h2>🧠 1. 노화를 늦추는 생활습관</h2>
+  <p class="lede">싱클레어가 <strong>가장 먼저</strong> 꼽는 영역입니다.</p>
+  <div class="steps">
+    <div class="scard">
+      <div class="n">① 가장 중요한 원칙</div>
+      <h4>항상 배부르지 않게 살기</h4>
+      <div class="yn">
+        <div class="n2">❌ 늘 배부른 상태 → 노화 가속</div>
+        <div class="y">⭕ 약간의 공복 → 장수 유전자 활성</div>
+      </div>
+      <div class="pt">📌 <b>"몸이 부족하다고 느끼는 순간, 세포는 복구 모드로 들어간다."</b></div>
+    </div>
+
+    <div class="scard">
+      <div class="n">②</div>
+      <h4>간헐적 단식은 선택이 아니라 전략</h4>
+      <p>하루 3끼 + 간식 = 노화 촉진. <strong>식사 횟수를 줄이는 것만으로도</strong> 인슐린·IGF-1이 줄고 세포 복구 신호가 늘어납니다.</p>
+      <div class="pt">📌 꼭 긴 단식이 아니어도 됩니다 — <b>12~16시간 공복만으로도 효과</b>가 있습니다.</div>
+    </div>
+
+    <div class="scard">
+      <div class="n">③</div>
+      <h4>운동은 '편안하면 의미 없다'</h4>
+      <div class="yn">
+        <div class="n2">❌ 산책 — 건강엔 좋지만 노화 억제 신호는 약함</div>
+        <div class="y">⭕ 숨이 차고 근육이 자극되는 운동</div>
+      </div>
+      <div class="pt">👉 운동은 <b>스트레스 신호</b>여야 합니다. 세포가 위기로 인식해야 수리·복구 시스템이 가동됩니다.</div>
+    </div>
+
+    <div class="scard">
+      <div class="n">④</div>
+      <h4>수면은 최고의 항노화 보충제</h4>
+      <p>자는 동안 몸은 <strong>DNA 손상을 복구하고, 염증 신호를 제거하고, 호르몬을 리셋</strong>합니다.</p>
+      <div class="pt">📌 수면 부족은 → 아무리 좋은 영양제를 먹어도 → <b>노화를 되돌릴 수 없음</b></div>
+    </div>
+  </div>
+
+  <div class="hl warn">
+    <b>단, "불편함"에도 한계가 있습니다</b><br>
+    무리한 단식·탈수·극단적 냉온 자극이 좋다는 뜻은 아닙니다. <b>고령자, 저체중, 임신부, 섭식장애 병력자, 당뇨약 복용자</b>에게 긴 공복은 오히려 위험할 수 있습니다.
+  </div>
+</section>
+
+<!-- 식습관 -->
+<section id="s-food">
+  <h2>🍽️ 2. 노화를 늦추는 식습관</h2>
+  <p class="lede">"음식은 칼로리가 아니라 <strong>세포에게 보내는 메시지</strong>다."</p>
+  <div class="steps">
+    <div class="scard food">
+      <div class="n">①</div>
+      <h4>혈당 스파이크는 '후성유전 정보 파괴자'</h4>
+      <p>급격한 혈당 상승 → 세포 내 <strong>정보 노이즈 증가</strong> → 노화 가속.</p>
+      <div class="yn">
+        <div class="n2">❌ 줄일 것 — 설탕 · 정제 탄수화물 · 액상과당 음료</div>
+        <div class="y">⭕ 유지할 것 — 단백질 + 지방 + 섬유질 중심, 천천히 오르는 식사</div>
+      </div>
+    </div>
+
+    <div class="scard food">
+      <div class="n">②</div>
+      <h4>과도한 동물성 단백질은 주의</h4>
+      <p>단백질은 필요하지만, <strong>과도한 섭취는 IGF-1을 올려</strong> 노화 촉진 신호로 갑니다. 핵심은 "적당히"입니다.</p>
+      <div class="pt" style="background:color-mix(in srgb,var(--no) 9%,transparent)">⚠️ <b>단, 연령에 따라 반대입니다.</b> 이 조언은 <b>젊고 건강한 성인 기준</b>입니다. <b>65세 이상에서는 오히려 단백질 부족이 근감소증으로 이어져 위험</b>합니다. 부모님께 "단백질 줄이세요"를 그대로 옮기지 마세요.</div>
+    </div>
+
+    <div class="scard food">
+      <div class="n">③</div>
+      <h4>식사는 '신호'다</h4>
+      <div class="yn">
+        <div class="n2">자주 먹을수록 → 성장 신호 ↑</div>
+        <div class="y">덜 먹을수록 → 생존·복구 신호 ↑</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 영양제 -->
+<section id="s-supp">
+  <h2>💊 3. 싱클레어 교수가 먹는 영양제</h2>
+  <p class="lede">책에서 영양제는 <strong>세 번째</strong>에 나옵니다. 1번이 생활습관, 2번이 식습관이었죠. <strong>이 순서 자체가 메시지입니다.</strong></p>
+  <div class="steps">
+    <div class="scard supp">
+      <div class="n">①</div>
+      <h4>NMN / NAD⁺ 관련 영양소</h4>
+      <p>노화의 핵심은 <strong>NAD⁺ 감소</strong>. NAD⁺는 세포 에너지와 DNA 복구에 필수인 물질입니다.</p>
+      <div class="pt">📌 기대하는 것 — 세포 에너지 대사 지원, <b>시르투인 활성 보조</b><br>공복 섭취하고 운동을 병행하면 시너지가 난다고 봅니다.</div>
+    </div>
+    <div class="scard supp">
+      <div class="n">②</div>
+      <h4>레스베라트롤</h4>
+      <p>시르투인 활성화 신호. <strong>"칼로리 제한 효과를 흉내 내는 물질"</strong>로 불립니다.</p>
+      <div class="pt">📌 단독 효과보다 <b>생활습관과 함께일 때</b> 의미가 있습니다.</div>
+    </div>
+    <div class="scard supp">
+      <div class="n">③</div>
+      <h4>오메가3</h4>
+      <p>만성 염증은 <strong>노화의 가속 페달</strong>입니다. 오메가3는 염증 신호를 조절하고 세포막 건강을 유지합니다.</p>
+      <div class="pt">📌 특히 필요한 분 — <b>혈당 변동이 큰 분, 만성 피로·염증 체질</b></div>
+    </div>
+    <div class="scard supp">
+      <div class="n">④</div>
+      <h4>마그네슘</h4>
+      <p><strong>수면 · 스트레스 · 혈당 조절</strong>의 핵심 미네랄입니다.</p>
+      <div class="pt">📌 부족하면 → 인슐린 저항성 ↑ · 수면 질 ↓ · <b>노화 가속</b></div>
+    </div>
+    <div class="scard supp">
+      <div class="n">⑤</div>
+      <h4>항산화 네트워크 (글루타치온 등)</h4>
+      <p>노화 = <strong>산화 스트레스 누적</strong>. 단일 항산화보다 <strong>네트워크 접근</strong>이 중요합니다.</p>
+      <div class="pt">📌 목적을 정확히 — 노화를 <b>"멈추는 것" ❌</b> / 노화 <b>속도를 늦추는 것 ⭕</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 순서 -->
+<section id="s-order">
+  <h2>🧭 순서를 틀리지 마세요</h2>
+  <p class="lede">이게 이 책에서 가장 현실적으로 남는 결론입니다.</p>
+  <div class="order">
+    <div class="ostep"><div class="obadge" style="background:var(--life)">1</div><div><div class="t">생활습관</div><div class="d">공복감 · 간헐적 단식 · 숨찬 운동 · 수면</div></div></div>
+    <div class="ostep"><div class="obadge" style="background:var(--food)">2</div><div><div class="t">식습관</div><div class="d">혈당 스파이크 관리 · 적당한 단백질 · 먹는 횟수</div></div></div>
+    <div class="ostep"><div class="obadge" style="background:var(--supp)">3</div><div><div class="t">영양제</div><div class="d">NMN · 레스베라트롤 · 오메가3 · 마그네슘 · 항산화</div></div></div>
+  </div>
+  <div class="hl warn">
+    <b>영양제부터 시작하면 순서가 거꾸로입니다</b><br>
+    현재 인체 근거가 가장 강한 항노화 개입은 여전히 <b>운동 · 금연 · 적정 체중 · 충분한 수면 · 혈압·혈당·지질 관리</b>입니다. <b>보충제는 이 위에 얹는 것이지 대체하는 것이 아닙니다.</b>
+  </div>
+  <div class="hl">
+    <b>저자 루틴은 처방전이 아닙니다</b><br>
+    싱클레어 교수 본인의 복용 루틴은 <b>개인적 선택</b>이지, 일반인에게 효과와 안전성이 확인된 표준 지침이 아닙니다. 그대로 따라 하기 전에 본인의 질환·복용약을 먼저 확인하세요.
+  </div>
+</section>
+
+<section>
+  <h2>⚠️ 시작하기 전에</h2>
+  <ul class="plain">
+    <li><b>임신·수유 중</b>이거나 임신을 준비 중인 분</li>
+    <li><b>당뇨약·혈압약</b>을 복용 중인 분 — 공복 시간 조절은 반드시 상담 후</li>
+    <li><b>저체중이거나 섭식장애 병력</b>이 있는 분</li>
+    <li><b>65세 이상</b> — 단백질은 줄이는 게 아니라 <b>챙기셔야</b> 합니다</li>
+    <li>만성질환으로 <b>정기 진료 중</b>인 분</li>
+  </ul>
+</section>
+
+<footer>
+  <p><strong style="color:var(--ink2)">원자료</strong> — 데이비드 A. 싱클레어 《노화의 종말》(부키, 2020) 요약 · 드럭해커 뉴스레터 #15</p>
+  <p style="margin-top:10px">'서투인'과 '시르투인'은 같은 물질(sirtuin)의 다른 표기입니다. 이 페이지는 <strong style="color:var(--ink2)">시르투인</strong>으로 통일했습니다.</p>
+  <p style="margin-top:10px">본 자료는 교육·정보 제공 목적이며 특정 질환의 예방·치료나 수명 연장을 보장하지 않습니다. 의약품 처방을 대신하지 않습니다. <strong style="color:var(--ink2)">질환이 있거나 복용 중인 약이 있으면 반드시 의사·약사와 상의하세요.</strong></p>
+  <p style="margin-top:10px">Drug Hacker Medical</p>
+</footer>
+
+</div>
+
+<script>
+/* 네비 실제 높이를 CSS 변수로 (노치/글자크기 대응) */
+(function(){
+  var nav=document.querySelector('.topnav');
+  function h(){ document.documentElement.style.setProperty('--navh', nav.offsetHeight+'px'); }
+  h(); addEventListener('resize',h,{passive:true}); addEventListener('orientationchange',h);
+  if(window.ResizeObserver) new ResizeObserver(h).observe(nav);
+})();
+
+/* 네비 활성화 + 맨위로 */
+(function(){
+  var chips=[].slice.call(document.querySelectorAll('#chips a'));
+  var secs=chips.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  var bar=document.getElementById('chips'), top=document.getElementById('totop');
+  function setOn(i){
+    chips.forEach(function(c,k){c.classList.toggle('on',k===i);});
+    var el=chips[i];
+    if(el){var l=el.offsetLeft-bar.clientWidth/2+el.clientWidth/2;
+      bar.scrollTo({left:l<0?0:l,behavior:'smooth'});}
+  }
+  if('IntersectionObserver' in window){
+    var seen={};
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){seen[e.target.id]=e.isIntersecting?e.intersectionRatio:0;});
+      var best=-1,bv=0;
+      secs.forEach(function(sc,i){if(sc&&(seen[sc.id]||0)>bv){bv=seen[sc.id];best=i;}});
+      if(best>=0) setOn(best);
+    },{rootMargin:'-66px 0px -55% 0px',threshold:[0,.25,.5,1]});
+    secs.forEach(function(sc){if(sc) io.observe(sc);});
+  }
+  var tick=false;
+  addEventListener('scroll',function(){
+    if(tick) return; tick=true;
+    requestAnimationFrame(function(){top.classList.toggle('on',scrollY>620);tick=false;});
+  },{passive:true});
+  top.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'});});
+})();
+
+/* 체크리스트 */
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.citem'));
+  var cap=[4,3,5], names=['생활습관','식습관','영양제'];
+  var el={sc:document.getElementById('sc'),msg:document.getElementById('smsg'),
+          fill:document.getElementById('sfill'),adv:document.getElementById('advice'),
+          l:[document.getElementById('l1'),document.getElementById('l2'),document.getElementById('l3')]};
+  function update(){
+    var g=[0,0,0], tot=0;
+    items.forEach(function(it){
+      var on=it.querySelector('input').checked;
+      it.classList.toggle('on',on);
+      if(on){g[+it.dataset.g]++; tot++;}
+    });
+    el.sc.textContent=tot;
+    el.fill.style.width=(tot/12*100)+'%';
+    g.forEach(function(v,i){el.l[i].textContent=v+'/'+cap[i];});
+
+    var m,c;
+    if(tot===0){m='하나씩 눌러보세요';c='var(--muted)';}
+    else if(tot<=3){m='시작 단계 — 한 가지만 골라 2주만';c='var(--no)';}
+    else if(tot<=6){m='절반쯤 왔습니다';c='var(--mid)';}
+    else if(tot<=9){m='꽤 잘 지키고 계십니다';c='var(--life)';}
+    else{m='훌륭합니다 👏';c='var(--go-ink)';}
+    el.msg.textContent=m; el.msg.style.color=c;
+    el.fill.style.background= tot<=3?'var(--no)': tot<=6?'var(--mid)': tot<=9?'var(--life)':'var(--go)';
+
+    /* 조언: 순서가 거꾸로인지부터 본다 */
+    var html='';
+    if(tot===0){ el.adv.style.display='none'; return; }
+    if(g[2]>=3 && g[0]<=1){
+      html='<b>⚠️ 순서가 거꾸로입니다</b><br>영양제는 '+g[2]+'개나 챙기시는데 <b>생활습관은 '+g[0]+'/4</b>입니다. 책의 결론은 정확히 그 반대예요 — <b>수면과 운동이 무너진 상태에서는 어떤 영양제도 노화를 되돌리지 못합니다.</b> 영양제 값의 일부를 먼저 수면에 쓰는 게 합리적입니다.';
+    } else {
+      var w=0, wr=1;
+      for(var i=0;i<3;i++){var r=g[i]/cap[i]; if(r<wr){wr=r;w=i;}}
+      if(wr===1){ html='<b>🎉 12개를 전부 지키고 계십니다</b><br>이 정도면 더 추가하는 것보다 <b>지금 것을 오래 유지하는 게</b> 더 중요합니다. 노화는 <b>멈추는 게 아니라 속도를 늦추는</b> 문제니까요.'; }
+      else { html='<b>👉 여기부터 채우세요 — '+names[w]+' ('+g[w]+'/'+cap[w]+')</b><br>'+
+        (w===0?'생활습관이 1순위입니다. 가장 쉬운 건 <b>저녁 8시 이후 안 먹기</b> — 다음날 아침 8시면 자동으로 12시간 공복입니다.'
+        :w===1?'식습관 중 가장 효과가 빠른 건 <b>액상과당 음료 끊기</b>입니다. 혈당 스파이크를 가장 크게 만드는 항목이라서요.'
+        :'영양제는 <b>마지막 순서</b>입니다. 생활습관·식습관이 어느 정도 잡힌 뒤에 얹는 게 맞습니다.');
+      }
+    }
+    el.adv.innerHTML=html;
+    el.adv.className='hl'+(g[2]>=3&&g[0]<=1?' warn':(wr===1?' ok':''));
+    el.adv.style.display='block';
+  }
+  items.forEach(function(it){ it.querySelector('input').addEventListener('change',update); });
+  update();
+})();
+</script>
+</body>
+</html>
